@@ -1,15 +1,12 @@
 import aws_cdk as cdk
-from aws_cdk import (
-    Duration,
-    Stack,
-    aws_cloudfront as cloudfront,
-    aws_cloudfront_origins as origins,
-    aws_s3 as s3,
-    aws_s3_deployment as s3_deployment,
-    aws_lambda as lambda_,
-    aws_certificatemanager as acm,
-)
 import boto3
+from aws_cdk import Duration, Stack
+from aws_cdk import aws_certificatemanager as acm
+from aws_cdk import aws_cloudfront as cloudfront
+from aws_cdk import aws_cloudfront_origins as origins
+from aws_cdk import aws_lambda as lambda_
+from aws_cdk import aws_s3 as s3
+from aws_cdk import aws_s3_deployment as s3_deployment
 from constructs import Construct
 
 

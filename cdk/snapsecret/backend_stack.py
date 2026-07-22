@@ -1,16 +1,12 @@
 import aws_cdk as cdk
-from aws_cdk import (
-    Duration,
-    Fn,
-    Stack,
-    aws_apigateway as apigw,
-    aws_certificatemanager as acm,
-    aws_dynamodb as dynamodb,
-    aws_lambda as lambda_,
-    aws_s3 as s3,
-    aws_ssm as ssm,
-    aws_iam as iam,
-)
+from aws_cdk import Duration, Fn, Stack
+from aws_cdk import aws_apigateway as apigw
+from aws_cdk import aws_certificatemanager as acm
+from aws_cdk import aws_dynamodb as dynamodb
+from aws_cdk import aws_iam as iam
+from aws_cdk import aws_lambda as lambda_
+from aws_cdk import aws_s3 as s3
+from aws_cdk import aws_ssm as ssm
 from constructs import Construct
 
 
