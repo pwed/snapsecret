@@ -138,7 +138,7 @@ export default {
                 fileReader.readAsDataURL(blob);
             });
         },
-        async encryptAndStore() {            
+        async encryptAndStore() {
             if (this.password.length < 8) {
                 this.encryptFailureMessage =
                     "Your encryption passphrase must be at least 8 characters long.";
