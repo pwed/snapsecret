@@ -37,7 +37,9 @@ class FrontendStack(Stack):
 
         apigw_url = ""
         try:
-            apigw_url = ssm_client.get_parameter(Name=f"{paramstore_path}/url")["Parameter"]["Value"]
+            apigw_url = ssm_client.get_parameter(Name=f"{paramstore_path}/url")[
+                "Parameter"
+            ]["Value"]
         except Exception:
             # Set it to localhost temporarily, as the param hasn't been created until the backend
             # stack has been deployed. This is to fix the initial `cdk bootstrap` issue where
@@ -46,7 +48,9 @@ class FrontendStack(Stack):
 
         apigw_domain = ""
         try:
-            apigw_domain = ssm_client.get_parameter(Name=f"{paramstore_path}/domain")["Parameter"]["Value"]
+            apigw_domain = ssm_client.get_parameter(Name=f"{paramstore_path}/domain")[
+                "Parameter"
+            ]["Value"]
         except Exception:
             apigw_domain = "localhost"
 
@@ -119,7 +123,6 @@ class FrontendStack(Stack):
                 ),
                 response_headers_policy=cf_headers,
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-                
             ),
             error_responses=[
                 cloudfront.ErrorResponse(

@@ -60,7 +60,11 @@ class BackendStack(Stack):
             ],
             cors=[
                 s3.CorsRule(
-                    allowed_methods=[s3.HttpMethods.GET, s3.HttpMethods.PUT, s3.HttpMethods.DELETE],
+                    allowed_methods=[
+                        s3.HttpMethods.GET,
+                        s3.HttpMethods.PUT,
+                        s3.HttpMethods.DELETE,
+                    ],
                     allowed_origins=snapsecret_origins,
                 )
             ],
@@ -117,9 +121,9 @@ class BackendStack(Stack):
         cdk.CfnOutput(
             self,
             id="snapsecret_api_domain",
-            value=api_domain
-            if api_domain is not None
-            else Fn.split("/", api.url, 4)[2],
+            value=(
+                api_domain if api_domain is not None else Fn.split("/", api.url, 4)[2]
+            ),
         )
 
         cdk.CfnOutput(
@@ -152,7 +156,7 @@ class BackendStack(Stack):
             id="snapsecret_api_domain_param",
             name=f"{paramstore_path}/domain",
             type="String",
-            value=api_domain
-            if api_domain is not None
-            else Fn.split("/", api.url, 4)[2],
+            value=(
+                api_domain if api_domain is not None else Fn.split("/", api.url, 4)[2]
+            ),
         )
