@@ -1,15 +1,12 @@
 import aws_cdk as cdk
-from aws_cdk import (
-    Duration,
-    Stack,
-    aws_cloudfront as cloudfront,
-    aws_cloudfront_origins as origins,
-    aws_s3 as s3,
-    aws_s3_deployment as s3_deployment,
-    aws_lambda as lambda_,
-    aws_certificatemanager as acm,
-)
 import boto3
+from aws_cdk import Duration, Stack
+from aws_cdk import aws_certificatemanager as acm
+from aws_cdk import aws_cloudfront as cloudfront
+from aws_cdk import aws_cloudfront_origins as origins
+from aws_cdk import aws_lambda as lambda_
+from aws_cdk import aws_s3 as s3
+from aws_cdk import aws_s3_deployment as s3_deployment
 from constructs import Construct
 
 
@@ -37,7 +34,9 @@ class FrontendStack(Stack):
 
         apigw_url = ""
         try:
-            apigw_url = ssm_client.get_parameter(Name=f"{paramstore_path}/url")["Parameter"]["Value"]
+            apigw_url = ssm_client.get_parameter(Name=f"{paramstore_path}/url")[
+                "Parameter"
+            ]["Value"]
         except Exception:
             # Set it to localhost temporarily, as the param hasn't been created until the backend
             # stack has been deployed. This is to fix the initial `cdk bootstrap` issue where
@@ -46,7 +45,9 @@ class FrontendStack(Stack):
 
         apigw_domain = ""
         try:
-            apigw_domain = ssm_client.get_parameter(Name=f"{paramstore_path}/domain")["Parameter"]["Value"]
+            apigw_domain = ssm_client.get_parameter(Name=f"{paramstore_path}/domain")[
+                "Parameter"
+            ]["Value"]
         except Exception:
             apigw_domain = "localhost"
 
@@ -119,7 +120,6 @@ class FrontendStack(Stack):
                 ),
                 response_headers_policy=cf_headers,
                 viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-                
             ),
             error_responses=[
                 cloudfront.ErrorResponse(

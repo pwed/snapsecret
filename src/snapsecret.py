@@ -1,16 +1,14 @@
-from datetime import datetime, timezone, timedelta
-from typing import Union
 import base64
 import json
+import logging
 import os
 import secrets
-import boto3
-import logging
-
-from botocore.exceptions import ClientError
-
+from datetime import datetime, timedelta, timezone
 # Enables type hinting but only during development
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
+
+import boto3
+from botocore.exceptions import ClientError
 
 if TYPE_CHECKING:
     from mypy_boto3_dynamodb import DynamoDBServiceResource
